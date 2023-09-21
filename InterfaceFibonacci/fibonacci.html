@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Fibonacci</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Fibonacci</h1>
+        <label for="number">Digite um número:</label>
+        <input type="number" id="number" placeholder="Digite um número">
+        <button id="calculate">Calcular</button>
+        <p id="result">O Fibonacci de <span id="inputNumber"></span> é o número: <span id="fibonacciNumber"></span></p>
+    </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            width: 80%;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const numberInput = document.getElementById("number");
+            const calculateButton = document.getElementById("calculate");
+            const inputNumber = document.getElementById("inputNumber");
+            const fibonacciNumber = document.getElementById("fibonacciNumber");
+
+            calculateButton.addEventListener("click", function () {
+                const N = parseInt(numberInput.value);
+                if (!isNaN(N) && N >= 0) {
+                    inputNumber.textContent = N;
+                    const result = calculateFibonacci(N);
+                    fibonacciNumber.textContent = result;
+                } else {
+                    inputNumber.textContent = "";
+                    fibonacciNumber.textContent = "Por favor, digite um número válido.";
+                }
+            });
+
+            function calculateFibonacci(N) {
+                let N1 = 0;
+                let N2 = 1;
+                for (let i = 0; i < N; i++) {
+                    const N3 = N1 + N2;
+                    N1 = N2;
+                    N2 = N3;
+                }
+                return N1;
+            }
+        });
+    </script>
+</body>
+</html>
